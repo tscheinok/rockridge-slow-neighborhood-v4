@@ -564,9 +564,9 @@ a:hover { color: var(--oak-green-light); }
   50% { background: rgba(232, 168, 48, 0.35); }
 }
 .fn-popup {
-  display: none; position: fixed; width: 320px;
+  display: none; position: fixed; width: 400px;
   background: #1a1a1a; color: rgba(255,255,255,0.9);
-  font-size: 0.82rem; line-height: 1.6; padding: 1rem 1.15rem;
+  font-size: 0.9rem; line-height: 1.65; padding: 1.25rem 1.4rem;
   border-radius: 10px; border: 1px solid rgba(255,255,255,0.15);
   box-shadow: 0 8px 30px rgba(0,0,0,0.4);
   z-index: 100; pointer-events: auto;
@@ -586,15 +586,15 @@ a:hover { color: var(--oak-green-light); }
 }
 .fn-close:hover { color: rgba(255,255,255,0.8); }
 .fn-goto {
-  display: block; margin-top: 0.5rem; padding-top: 0.45rem;
+  display: block; margin-top: 0.6rem; padding-top: 0.5rem;
   border-top: 1px solid rgba(255,255,255,0.1);
-  font-size: 0.72rem; color: var(--amber); text-decoration: none;
+  font-size: 0.8rem; color: var(--amber); text-decoration: none;
   opacity: 0.7; transition: opacity 0.2s;
 }
 .fn-goto:hover { opacity: 1; text-decoration: underline; }
 
 @media (max-width: 600px) {
-  .fn-popup { width: 260px; }
+  .fn-popup { width: 320px; padding: 1.1rem 1.2rem; font-size: 0.85rem; }
 }
 
 /* Footnotes Reference List */
@@ -1241,7 +1241,7 @@ a:hover { color: var(--oak-green-light); }
 
       <!-- Ney Avenue -->
       <div style="background: var(--card-bg); border-radius: 12px; padding: 2rem; box-shadow: 0 2px 12px rgba(0,0,0,0.08); transition: transform 0.2s, box-shadow 0.2s;" onmouseover="this.style.transform='translateY(-4px)'; this.style.boxShadow='0 4px 20px rgba(0,0,0,0.12)'" onmouseout="this.style.transform=''; this.style.boxShadow='0 2px 12px rgba(0,0,0,0.08)'">
-        <div style="font-size: 2rem; margin-bottom: 1rem;">🚧</div>
+        <img src="ney-avenue-road-closed.png" alt="Oakland road closure sign — Road Closed to Thru Traffic with traffic cones and observers" style="width: 100%; border-radius: 8px; margin-bottom: 1rem; object-fit: cover; max-height: 180px;">
         <h3 style="font-family: 'DM Serif Display', serif; font-size: 1.4rem; margin-bottom: 0.75rem; color: var(--oak-green);">The "Ney Avenue" Diverter</h3>
         <p style="color: var(--text-secondary); margin-bottom: 1.25rem; line-height: 1.6;">
           Oakland's own study showing diverters <strong>successfully redirected non-local traffic</strong> off residential streets while preserving full access for residents. The physical barriers eliminated shortcutting without displacing meaningful volume to adjacent streets.
@@ -1253,7 +1253,7 @@ a:hover { color: var(--oak-green-light); }
 
       <!-- Berkeley Model -->
       <div style="background: var(--card-bg); border-radius: 12px; padding: 2rem; box-shadow: 0 2px 12px rgba(0,0,0,0.08); transition: transform 0.2s, box-shadow 0.2s;" onmouseover="this.style.transform='translateY(-4px)'; this.style.boxShadow='0 4px 20px rgba(0,0,0,0.12)'" onmouseout="this.style.transform=''; this.style.boxShadow='0 2px 12px rgba(0,0,0,0.08)'">
-        <div style="font-size: 2rem; margin-bottom: 1rem;">🚴</div>
+        <img src="berkeley-bicycle-boulevard.png" alt="Berkeley Bicycle Boulevard Network map" style="width: 100%; border-radius: 8px; margin-bottom: 1rem; object-fit: cover; max-height: 180px;">
         <h3 style="font-family: 'DM Serif Display', serif; font-size: 1.4rem; margin-bottom: 0.75rem; color: var(--oak-green);">The Berkeley Model (Hillegass Ave)</h3>
         <p style="color: var(--text-secondary); margin-bottom: 1.25rem; line-height: 1.6;">
           Just blocks north of our neighborhood, Berkeley used diverters on Hillegass Avenue to <strong>keep traffic volumes below 1,500 ADT</strong> on their bicycle boulevard. The same street crosses into Oakland and immediately jumps to nearly 2,000 ADT — demonstrating exactly what happens without traffic calming.
@@ -1370,48 +1370,48 @@ a:hover { color: var(--oak-green-light); }
 <!-- Popup footnotes (placed at body level to avoid overflow:hidden clipping) -->
 <div class="fn-popup" id="fn-10k" data-ref="fn-ref-1">
   <button class="fn-close" aria-label="Close">&times;</button>
-  <strong>Footnote 1)</strong> Traffic counting equipment compiled ADT as ~3,500 on Colby, ~1,900 on Hillegass, and ~2,000 on Martin/Ayala. It is estimated that the other ~12 streets of the trapezoid carry over 2,500 in aggregate.
-  <a href="#fn-ref-1" class="fn-goto" onclick="document.querySelectorAll('.fn-popup').forEach(p=>p.classList.remove('visible'))">see full footnote ↓</a>
+  Traffic counting equipment compiled ADT as ~3,500 on Colby, ~1,900 on Hillegass, and ~2,000 on Martin/Ayala. It is estimated that the other ~12 streets of the trapezoid carry over 2,500 in aggregate.
+  <a href="#fn-ref-1" class="fn-goto" onclick="document.querySelectorAll('.fn-popup').forEach(p=>p.classList.remove('visible'))">see full footnote (1) ↓</a>
 </div>
 <div class="fn-popup" id="fn-trapezoid" data-ref="fn-ref-2">
   <button class="fn-close" aria-label="Close">&times;</button>
-  <strong>Footnote 2)</strong> Lower Rockridge trapezoid is the residential area delimited by 4 avenues — College, Claremont, Telegraph and Alcatraz — with 14 points of entry/exit for car traffic.
-  <a href="#fn-ref-2" class="fn-goto" onclick="document.querySelectorAll('.fn-popup').forEach(p=>p.classList.remove('visible'))">see full footnote ↓</a>
+  Lower Rockridge trapezoid is the residential area delimited by 4 avenues — College, Claremont, Telegraph and Alcatraz — with 14 points of entry/exit for car traffic.
+  <a href="#fn-ref-2" class="fn-goto" onclick="document.querySelectorAll('.fn-popup').forEach(p=>p.classList.remove('visible'))">see full footnote (2) ↓</a>
 </div>
 <div class="fn-popup" id="fn-petition1" data-ref="fn-ref-3">
   <button class="fn-close" aria-label="Close">&times;</button>
-  <strong>Footnote 3)</strong> 2021 petition requesting the trapezoid to be converted into a permanent slow neighborhood.
-  <a href="#fn-ref-3" class="fn-goto" onclick="document.querySelectorAll('.fn-popup').forEach(p=>p.classList.remove('visible'))">see full footnote ↓</a>
+  2021 petition requesting the trapezoid to be converted into a permanent slow neighborhood.
+  <a href="#fn-ref-3" class="fn-goto" onclick="document.querySelectorAll('.fn-popup').forEach(p=>p.classList.remove('visible'))">see full footnote (3) ↓</a>
 </div>
 <div class="fn-popup" id="fn-petition2" data-ref="fn-ref-4">
   <button class="fn-close" aria-label="Close">&times;</button>
-  <strong>Footnote 4)</strong> 2025 petition requesting a first pilot to reduce traffic volume by leveraging diverters.
-  <a href="#fn-ref-4" class="fn-goto" onclick="document.querySelectorAll('.fn-popup').forEach(p=>p.classList.remove('visible'))">see full footnote ↓</a>
+  2025 petition requesting a first pilot to reduce traffic volume by leveraging diverters.
+  <a href="#fn-ref-4" class="fn-goto" onclick="document.querySelectorAll('.fn-popup').forEach(p=>p.classList.remove('visible'))">see full footnote (4) ↓</a>
 </div>
 <div class="fn-popup" id="fn-60pct" data-ref="fn-ref-5">
   <button class="fn-close" aria-label="Close">&times;</button>
-  <strong>Footnote 5)</strong> Based on UC Berkeley Institute of Transportation Studies modeling of diverter configurations designed by OakDOT.
-  <a href="#fn-ref-5" class="fn-goto" onclick="document.querySelectorAll('.fn-popup').forEach(p=>p.classList.remove('visible'))">see full footnote ↓</a>
+  Based on UC Berkeley Institute of Transportation Studies modeling of diverter configurations designed by OakDOT.
+  <a href="#fn-ref-5" class="fn-goto" onclick="document.querySelectorAll('.fn-popup').forEach(p=>p.classList.remove('visible'))">see full footnote (5) ↓</a>
 </div>
 <div class="fn-popup" id="fn-pilot" data-ref="fn-ref-6">
   <button class="fn-close" aria-label="Close">&times;</button>
-  <strong>Footnote 6)</strong> Based on OakDOT experience, pilots require a minimum of 3–4 months for traffic patterns to be rebooted and another 6–9 months to measure impact and take into account seasonal variations (e.g. schools on/off).
-  <a href="#fn-ref-6" class="fn-goto" onclick="document.querySelectorAll('.fn-popup').forEach(p=>p.classList.remove('visible'))">see full footnote ↓</a>
+  Based on OakDOT experience, pilots require a minimum of 3–4 months for traffic patterns to be rebooted and another 6–9 months to measure impact and take into account seasonal variations (e.g. schools on/off).
+  <a href="#fn-ref-6" class="fn-goto" onclick="document.querySelectorAll('.fn-popup').forEach(p=>p.classList.remove('visible'))">see full footnote (6) ↓</a>
 </div>
 <div class="fn-popup" id="fn-ceqa" data-ref="ref-A">
   <button class="fn-close" aria-label="Close">&times;</button>
-  <strong>Reference A)</strong> Fehr &amp; Peers study quantifying environmental impact of future JCC facility. <a href="https://cao-94612.s3.us-west-2.amazonaws.com/documents/JCC-East-Bay-Project-CEQA-Analysis.pdf" target="_blank" rel="noopener" style="color: var(--amber);">View CEQA Analysis (PDF)</a>
-  <a href="#ref-A" class="fn-goto" onclick="document.querySelectorAll('.fn-popup').forEach(p=>p.classList.remove('visible'))">see full reference ↓</a>
+  Fehr &amp; Peers study quantifying environmental impact of future JCC facility. <a href="https://cao-94612.s3.us-west-2.amazonaws.com/documents/JCC-East-Bay-Project-CEQA-Analysis.pdf" target="_blank" rel="noopener" style="color: var(--amber);">View CEQA Analysis (PDF)</a>
+  <a href="#ref-A" class="fn-goto" onclick="document.querySelectorAll('.fn-popup').forEach(p=>p.classList.remove('visible'))">see full reference (A) ↓</a>
 </div>
 <div class="fn-popup" id="fn-superblocks" data-ref="ref-B">
   <button class="fn-close" aria-label="Close">&times;</button>
-  <strong>Reference B)</strong> Barcelona's superblocks reclaim residential streets from through-traffic — reducing noise, pollution, and danger while creating public space. <a href="https://urbandesignlab.in/barcelona-superblocks-reclaiming-streets-for-people/" target="_blank" rel="noopener" style="color: var(--amber);">Read more</a>
-  <a href="#ref-B" class="fn-goto" onclick="document.querySelectorAll('.fn-popup').forEach(p=>p.classList.remove('visible'))">see full reference ↓</a>
+  Barcelona's superblocks reclaim residential streets from through-traffic — reducing noise, pollution, and danger while creating public space. <a href="https://urbandesignlab.in/barcelona-superblocks-reclaiming-streets-for-people/" target="_blank" rel="noopener" style="color: var(--amber);">Read more</a>
+  <a href="#ref-B" class="fn-goto" onclick="document.querySelectorAll('.fn-popup').forEach(p=>p.classList.remove('visible'))">see full reference (B) ↓</a>
 </div>
 <div class="fn-popup" id="fn-treatments" data-ref="ref-C">
   <button class="fn-close" aria-label="Close">&times;</button>
-  <strong>Reference C)</strong> Comparative analysis of traffic calming treatments — impact, affordability, and effectiveness. Diverters rank highest at 260%. <a href="https://docs.google.com/spreadsheets/d/1Hk8-VbBMQWHJfMODOuON3VDwQ0lVEPL_/edit" target="_blank" rel="noopener" style="color: var(--amber);">View data</a>
-  <a href="#ref-C" class="fn-goto" onclick="document.querySelectorAll('.fn-popup').forEach(p=>p.classList.remove('visible'))">see full reference ↓</a>
+  Comparative analysis of traffic calming treatments — impact, affordability, and effectiveness. Diverters rank highest at 260%. <a href="https://docs.google.com/spreadsheets/d/1Hk8-VbBMQWHJfMODOuON3VDwQ0lVEPL_/edit" target="_blank" rel="noopener" style="color: var(--amber);">View data</a>
+  <a href="#ref-C" class="fn-goto" onclick="document.querySelectorAll('.fn-popup').forEach(p=>p.classList.remove('visible'))">see full reference (C) ↓</a>
 </div>
 
 <script>
