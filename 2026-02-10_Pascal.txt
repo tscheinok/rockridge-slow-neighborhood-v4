@@ -1,0 +1,109 @@
+Removed Dr. Jane MacFarlane references
+Footnotes vs references
+UC Berkeley Institute of Transportation Studies modeling of diverter configurations designed by OakDOT - footnote
+iamges!
+
+piot c missing source
+
+
+
+
+
+
+Hi Tamir,
+ 
+Thank you for your activism and guidance with website building. I reviewed the webpages as of 02/08 9 pm and captured the edits listed below categorized by webpages. Highlights: we have very convincing/simple content, webpage F is brand new and webpage G requires additional massaging. Edward and I are planning to develop a “Heat map” webpage to show density of support for the pilot in the trapezoid.
+ 
+As of 02/07, it appeared Zac Hunger was still contemplating a Feb 19th community meeting. I’m back in town today from Tahoe, Tegan will be back in town Tuesday. Does it seem reasonable to target Wed 02/11 as Go Live?
+I’m wondering if an optimal communication strategy is releasing the website ~ 1 week before the soon-to-be-organized community meeting. Why 1 week? A good balance between giving enough time for fellow neighbors to digest the website before the community meeting, not enough time for the pilot opponents to organize with an alternative. WDYT?
+ 
+Thank you, Pascal
+ 
+List edits categorized by webpages:
+Webpage A
+
+
+Insert reference/foot note to substantiate “ Over 10,000 cars / day
+Traffic counting equipment compiled ADT as ~3,500 on Colby, ~1,900 on Hillegass, and ~2,100 on Martin/Ayala. It is estimated that the other ~12 streets of the trapezoid carry over 2,500 in aggregate.
+
+Replace “Lower Rockridge neighborhood” with “Lower Rockridge Trapezoid (*)”
+Add footnote: (*) Lower Rockridge trapezoid is the residential area delimited by 4 avenues - College, Claremont, Telegraph and Alcatraz - with 14 points of entry/exit for car traffic
+Replace “After three years of studies, meetings, and promises, it's time for action” with “After 15+ years of residents lobbying the City, years of studies, 2 petitions1,2 with hundreds of signature requesting traffic volume reduction (a, b), 2 years of meetings, it's time for action
+Add two footnotes
+2021 petition requesting trapezoid to be converted into a permanent slow neighborhood
+2025 petition requesting a first pilot to reduce traffic volume by leveraging diverters
+Replace “10,000 cars per day through our neighborhood” with “10,000 cars per day through the Lower Rockridge trapezoid”
+Replace “Reduce traffic by a minimum of 60% cutting through the Lower Rockridge trapezoid(*)”
+Replace “1,000,000 cut-through cars per year we aim to eliminate from our residential streets” with “1,000,000 cut-through cars per year we aim to eliminate from our streets in the Lower Rockridge trapezoid
+ 
+
+Webpage B
+
+
+Align 3 principles with 3 photos on the right
+On photo #2, replace “No parking” sign with “Lower Rockridge”
+On photo #2, replace “Slow Street” sign with “Slow Neighborhood”
+Webpage C
+
+
+Replace “Navigation apps turned our neighborhood into a highway” with “Navigation apps turned our neighborhood from residential to thoroughfare”
+Replace “NACTO guidance says no more than” with “NACTO guidance establish as a ceiling”
+Replace “The new JCC facility will generate up to 338 additional peak-hour vehicle trips (Fehr & Peers CEQA study)” with “The new Jewish Community Center (JCC) facility will generate up to 338 additional peak-hour vehicle trips - source: California Environmental Quality Act (CEQA) study3 conducted as part of the JCC remodel permitting process
+Include a footnote (or side quotation?) with “3 Fehr & Peers study quantifying environmental impact of future JCC
+Include a weblink referencing the Fehr & Peers document
+Replace “Google Maps that route them through residential streets to shave seconds off their commute” with “Google Maps that route them through residential streets to shave time off their commute”
+Webpage D
+
+
+Replace “measured vs. standards” with “current measured vs. safety standards”
+Add a horizontal scale (or arrow?) from 0 to 6,000 on horizontal bar chart
+In applicable standard column
+                                                         i.      Update header as max threshold
+
+                                                       ii.      Replace “OakDOT bike route” with “FHWA and OakDOT bike route”
+
+Update numbers as
+                                                         i.      Colby Street ~3,500
+
+                                                       ii.      Martin Street ~2,000
+
+                                                     iii.      FHWA max threshold for local street ~700
+
+                                                     iv.      FHWA max threshold for bike route ~2,000
+
+Webpage E
+
+
+Remove all references to UC Berkeley, Institute of Transportation, Jane MacFarlane
+Replace “120-day pilot” with “1 year pilot (*)”
+Add footnote:  (*) based on OakDOT experience, pilot require a minimum of 3-4 months for traffic patterns to be rebooted and another 6-9 months to measure impact and take into account seasonal variations (e.g. schools on/off)
+Repurpose “Data-driven” text box with  “Modern urban design”
+In “Modern urban design”, summarize advantages of Barcelona superblocks – reclaiming streets for people and include weblink to web source
+ 
+
+Webpage F *NEW*
+
+
+Create new webpage based on slide in PPT doc: RockridgeSlowNeighborhood Overview DRAFT 20260119.pptx
+Emphasize key message: “Pilot first things first”
+Webpage G
+
+ 
+Revise the Evidence text boxes TBD
+Webpage H
+
+
+Include callouts to emphasize results in terms of traffic reduction
+Include 1 or 2 visuals to carry over the neighborhood vision, e.g. picture from Barcelona superblocks
+
+
+Webpage I
+
+
+Replace header “What you can do right now” with “Demand immediate action!”
+Include a text box titled “Support the immediate kick-off of the diverter-based pilot OakDOT proposed 18 months ago”
+In the text box titled “Support the immediate kickoff…”, insert 3 text fields to type up Name, Email address, Street lived on (all 3 text fields mandatory to before pressing the Submit button)
+ 
+
+Every webpage
+Remove “Modeling: Dr. Jane MacFarlane, UC Berkeley Institute of Transportation Studies / Smart Cities Research Center. Based on 5 years of SFCTA synthetic population data. Published research”

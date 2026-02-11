@@ -382,6 +382,10 @@ a:hover { color: var(--oak-green-light); }
 .cta-card p { font-size: 0.9rem; color: rgba(255,255,255,0.65); margin-bottom: 1rem; }
 .cta-card a { color: var(--amber); font-weight: 600; font-size: 0.9rem; }
 
+#supportBtn:hover:not(:disabled) { background: #d4952a; transform: translateY(-1px); }
+#supportBtn:disabled { cursor: default; }
+.support-box input:focus { outline: none; border-color: var(--amber); }
+
 .email-block {
   background: rgba(0,0,0,0.2); border-radius: 8px; padding: 1rem 1.25rem;
   margin-top: 1rem; text-align: left;
@@ -415,6 +419,66 @@ a:hover { color: var(--oak-green-light); }
 .standards-table tr:nth-child(even) { background: rgba(0,0,0,0.02); }
 .standards-table .over-limit { color: var(--danger); font-weight: 700; }
 .standards-table .limit { color: var(--oak-green); font-weight: 600; }
+
+/* Pilot Comparison Table */
+.comparison-table {
+  width: 100%; border-collapse: collapse; font-size: 0.85rem;
+}
+.comparison-table th {
+  text-align: left; padding: 0.6rem 0.75rem;
+  background: var(--oak-green); color: white;
+  font-weight: 600; font-size: 0.75rem;
+  text-transform: uppercase; letter-spacing: 0.05em;
+}
+.comparison-table th:first-child { border-radius: 8px 0 0 0; }
+.comparison-table th:last-child { border-radius: 0 8px 0 0; }
+.comparison-table td {
+  padding: 0.6rem 0.75rem; border-bottom: 1px solid var(--border);
+  vertical-align: middle;
+}
+.comparison-table tr:nth-child(even) { background: rgba(0,0,0,0.02); }
+.comparison-table .highlight-row {
+  background: rgba(45, 90, 39, 0.08) !important;
+  border-left: 3px solid var(--oak-green);
+}
+.comp-bar-track {
+  height: 22px; background: #EDE9E0; border-radius: 4px;
+  position: relative; overflow: hidden; min-width: 60px;
+}
+.comp-bar-fill {
+  height: 100%; border-radius: 4px;
+  display: flex; align-items: center; justify-content: flex-end;
+  padding-right: 0.5rem;
+  font-size: 0.72rem; font-weight: 700; color: white;
+  white-space: nowrap; min-width: fit-content;
+  padding-left: 0.4rem;
+}
+.eff-best { background: linear-gradient(90deg, #1a5e1a, #27AE60); }
+.eff-good { background: linear-gradient(90deg, #2d7a2d, #4CAF50); }
+.eff-mid { background: linear-gradient(90deg, #5B8C5A, #7BA37B); }
+.eff-low { background: linear-gradient(90deg, #9AB89A, #B0C8B0); }
+.affordability-dots {
+  font-size: 0.85rem; color: var(--amber); letter-spacing: 1px;
+}
+.comp-desc {
+  font-size: 0.75rem; color: var(--text-muted); font-weight: 400;
+  line-height: 1.4; display: block; margin-top: 0.15rem;
+}
+.eff-track { overflow: visible; }
+.eff-threshold {
+  position: absolute; top: -4px; bottom: -4px; width: 2px;
+  left: 33.3%; background: var(--danger); z-index: 2; border-radius: 1px;
+}
+.eff-threshold.labeled::after {
+  content: '100% threshold'; position: absolute; top: -18px; left: 50%;
+  transform: translateX(-50%); font-size: 0.6rem; font-weight: 600;
+  color: var(--danger); white-space: nowrap;
+}
+@media (max-width: 768px) {
+  .comparison-table { font-size: 0.75rem; }
+  .comparison-table th, .comparison-table td { padding: 0.4rem 0.5rem; }
+  .comp-desc { display: none; }
+}
 
 /* Section label */
 .section-label {
@@ -479,6 +543,82 @@ a:hover { color: var(--oak-green-light); }
   .data-bar-label { width: auto; text-align: left; }
 }
 
+/* Popup Footnotes */
+.fn-trigger {
+  cursor: pointer; color: var(--amber);
+  font-size: 0.7em; font-weight: 700; font-family: 'DM Sans', sans-serif;
+  background: rgba(232, 168, 48, 0.12); border: none;
+  padding: 0.05em 0.2em; margin-left: 0.15rem;
+  border-radius: 3px; vertical-align: super;
+  text-decoration: underline; text-decoration-style: dotted;
+  text-underline-offset: 2px;
+  transition: all 0.2s ease; flex-shrink: 0;
+  animation: fnAttention 2s ease 1.5s 1;
+}
+.fn-trigger:hover {
+  background: var(--amber); color: #1a1a1a;
+  text-decoration: none; transform: scale(1.08);
+}
+@keyframes fnAttention {
+  0%, 100% { background: rgba(232, 168, 48, 0.12); }
+  50% { background: rgba(232, 168, 48, 0.35); }
+}
+.fn-popup {
+  display: none; position: fixed; width: 320px;
+  background: #1a1a1a; color: rgba(255,255,255,0.9);
+  font-size: 0.82rem; line-height: 1.6; padding: 1rem 1.15rem;
+  border-radius: 10px; border: 1px solid rgba(255,255,255,0.15);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.4);
+  z-index: 100; pointer-events: auto;
+}
+.fn-popup::after {
+  content: ''; position: absolute; left: 50%; transform: translateX(-50%);
+  border: 8px solid transparent;
+}
+.fn-popup.above::after { top: 100%; border-top-color: #1a1a1a; }
+.fn-popup.below::after { bottom: 100%; border-bottom-color: #1a1a1a; }
+.fn-popup.visible { display: block; animation: fnFadeIn 0.2s ease; }
+@keyframes fnFadeIn { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
+.fn-close {
+  position: absolute; top: 0.4rem; right: 0.6rem;
+  background: none; border: none; color: rgba(255,255,255,0.4);
+  font-size: 1.1rem; cursor: pointer; line-height: 1;
+}
+.fn-close:hover { color: rgba(255,255,255,0.8); }
+.fn-goto {
+  display: block; margin-top: 0.5rem; padding-top: 0.45rem;
+  border-top: 1px solid rgba(255,255,255,0.1);
+  font-size: 0.72rem; color: var(--amber); text-decoration: none;
+  opacity: 0.7; transition: opacity 0.2s;
+}
+.fn-goto:hover { opacity: 1; text-decoration: underline; }
+
+@media (max-width: 600px) {
+  .fn-popup { width: 260px; }
+}
+
+/* Footnotes Reference List */
+.footnotes-list {
+  list-style: none; padding: 0; margin: 1.5rem 0 0;
+}
+.footnotes-list li {
+  font-size: 0.9rem; color: var(--text-secondary); line-height: 1.7;
+  padding: 0.75rem 0; border-bottom: 1px solid var(--border);
+}
+.footnotes-list li:last-child { border-bottom: none; }
+.footnotes-list strong { color: var(--oak-green); }
+
+.references-list {
+  list-style: none; padding: 0; margin: 1.5rem 0 0;
+}
+.references-list li {
+  font-size: 0.9rem; color: var(--text-secondary); line-height: 1.7;
+  padding: 0.75rem 0; border-bottom: 1px solid var(--border);
+}
+.references-list li:last-child { border-bottom: none; }
+.references-list strong { color: var(--amber); }
+.references-list a { color: var(--oak-green); }
+
 /* Animation */
 .fade-in {
   opacity: 0; transform: translateY(20px);
@@ -521,7 +661,7 @@ a:hover { color: var(--oak-green-light); }
       <div class="hero-badge">Active Campaign — February 2026</div>
       <h1>Our streets were built for <em>neighbors</em>, not commuter shortcuts <a href="https://its.berkeley.edu/news/your-navigation-app-making-traffic-unmanageable" target="_blank" rel="noopener noreferrer" style="font-size: 0.85rem; font-weight: normal; color: rgba(255,255,255,0.6); text-decoration: underline; vertical-align: baseline; margin-left: 0.5rem;">(see study)</a></h1>
       <p class="hero-sub">
-        Over 10,000 cars a day travel through the Lower Rockridge neighborhood. After three years of studies, meetings, and promises, it's time for action.
+        Over 10,000<button class="fn-trigger" data-fn="fn-10k" aria-label="Footnote 1">(1)</button> cars a day travel through the Lower Rockridge Trapezoid.<button class="fn-trigger" data-fn="fn-trapezoid" aria-label="Footnote 2">(2)</button> After 15+ years of residents lobbying the City, years of studies, 2 petitions<button class="fn-trigger" data-fn="fn-petition1" aria-label="Footnote 3">(3)</button><button class="fn-trigger" data-fn="fn-petition2" aria-label="Footnote 4">(4)</button> with hundreds of signatures requesting traffic volume reduction, 2 years of meetings, it's time for action.
       </p>
       <div class="hero-actions">
         <a href="#action" class="btn btn-primary">Take Action →</a>
@@ -532,8 +672,8 @@ a:hover { color: var(--oak-green-light); }
       <div class="hero-stat-card" style="display: flex; flex-direction: column; gap: 0; padding: 0; overflow: hidden;">
         <div style="padding: 1.25rem 1.75rem; border-bottom: 1px solid rgba(255,255,255,0.1);">
           <div style="font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: rgba(255,255,255,0.5); margin-bottom: 0.3rem;">Overall Volume</div>
-          <div style="font-family: 'DM Serif Display', serif; font-size: 2.8rem; color: var(--amber); line-height: 1.1;">10,000</div>
-          <div style="font-size: 0.85rem; color: rgba(255,255,255,0.6); margin-top: -0.1rem;">cars per day through our neighborhood</div>
+          <div style="font-family: 'DM Serif Display', serif; font-size: 2.8rem; color: var(--amber); line-height: 1.1;">10,000<button class="fn-trigger" data-fn="fn-10k" aria-label="Footnote 1" style="font-size: 0.75rem;">(1)</button></div>
+          <div style="font-size: 0.85rem; color: rgba(255,255,255,0.6); margin-top: -0.1rem;">cars per day through the Lower Rockridge trapezoid</div>
         </div>
         <div style="padding: 1.25rem 1.75rem; border-bottom: 1px solid rgba(255,255,255,0.1);">
           <div style="font-family: 'DM Serif Display', serif; font-size: 2.4rem; color: var(--amber); line-height: 1.1; margin-bottom: 0.5rem;">2× – 8× over safe traffic limits</div>
@@ -541,8 +681,8 @@ a:hover { color: var(--oak-green-light); }
         </div>
         <div style="padding: 1.25rem 1.75rem;">
           <div style="font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: rgba(255,255,255,0.5); margin-bottom: 0.3rem;">Traffic Pilot Goal</div>
-          <div style="font-family: 'DM Serif Display', serif; font-size: 2.4rem; color: var(--amber); line-height: 1.1;">Reduce traffic by 60%</div>
-          <div style="font-size: 0.85rem; color: rgba(255,255,255,0.6); margin-top: -0.1rem;">cutting through our neighborhood</div>
+          <div style="font-family: 'DM Serif Display', serif; font-size: 2.4rem; color: var(--amber); line-height: 1.1;">Reduce traffic by a minimum of 60%</div>
+          <div style="font-size: 0.85rem; color: rgba(255,255,255,0.6); margin-top: -0.1rem;">cutting through the Lower Rockridge trapezoid<button class="fn-trigger" data-fn="fn-60pct" aria-label="Footnote 5">(5)</button></div>
         </div>
       </div>
       <div class="hero-quote">
@@ -557,7 +697,7 @@ a:hover { color: var(--oak-green-light); }
 <div class="big-number-banner">
   <div class="container">
     <div class="big-number">1,000,000</div>
-    <div class="big-number-label">cut-through cars per year we aim to eliminate from our residential streets</div>
+    <div class="big-number-label">cut-through cars per year we aim to eliminate from our streets in the Lower Rockridge trapezoid</div>
   </div>
 </div>
 
@@ -598,7 +738,7 @@ a:hover { color: var(--oak-green-light); }
 <section class="section" id="problem">
   <div class="container">
     <div class="section-label">The Problem</div>
-    <h2>Navigation apps turned our neighborhood into a highway</h2>
+    <h2>Navigation apps turned our neighborhood from residential to thoroughfare</h2>
     <p class="lead">
       The Rockridge "trapezoid" — the residential area bounded by College, Claremont, Telegraph, and Alcatraz Avenues — has become a major cut-through corridor. Waze, Google Maps, and gig-economy routing send thousands of commuter vehicles daily onto streets never designed for that volume.
     </p>
@@ -612,17 +752,17 @@ a:hover { color: var(--oak-green-light); }
       <div class="problem-card">
         <div class="problem-icon icon-green">🚲</div>
         <h3>Bike Boulevard Failure</h3>
-        <p>Colby is Oakland's designated bicycle boulevard — a primary bike corridor connecting neighborhoods across North Oakland and South Berkeley. NACTO guidance says no more than 50 cars per hour and 2,000 per day on a bike boulevard. During rush hour we hit 400 — 8× the hourly limit — and daily volumes reach 4,000, 2× the daily threshold.</p>
+        <p>Colby is Oakland's designated bicycle boulevard — a primary bike corridor connecting neighborhoods across North Oakland and South Berkeley. NACTO guidance establish as a ceiling 50 cars per hour and 2,000 per day on a bike boulevard. During rush hour we hit 400 — 8× the hourly limit — and daily volumes reach 4,000, 2× the daily threshold.</p>
       </div>
       <div class="problem-card">
         <div class="problem-icon icon-info">🏗️</div>
         <h3>It's About to Get Worse</h3>
-        <p>The new JCC facility will generate up to 338 additional peak-hour vehicle trips (Fehr &amp; Peers CEQA study). New developments on College Ave will add even more.</p>
+        <p>The new <a href="https://www.dailycal.org/news/city/communities/east-bay-jewish-community-center-to-move-to-new-rockridge-campus/article_d1c01bce-f7fe-11ef-b694-1fd4fd41b8e8.html" target="_blank" rel="noopener">Jewish Community Center</a> (JCC) facility will generate up to 338 additional peak-hour vehicle trips — source: California Environmental Quality Act (CEQA) study<button class="fn-trigger" data-fn="fn-ceqa" aria-label="Reference A">(A)</button> conducted as part of the JCC remodel permitting process. New developments on College Ave will add even more.</p>
       </div>
       <div class="problem-card">
         <div class="problem-icon icon-warning">📱</div>
         <h3>App-Driven Volume</h3>
-        <p>The vast majority of traffic on Colby and Hillegass is cut-through — drivers following navigation apps like Waze and Google Maps that route them through residential streets to shave seconds off their commute.</p>
+        <p>The vast majority of traffic on Colby and Hillegass is cut-through — drivers following navigation apps like Waze and Google Maps that route them through residential streets to shave time off their commute.</p>
       </div>
     </div>
   </div>
@@ -638,14 +778,14 @@ a:hover { color: var(--oak-green-light); }
     </p>
 
     <div class="data-bar-chart fade-in" style="margin-top:2.5rem">
-      <h3 style="margin-bottom: 1.5rem;">Average Daily Traffic (ADT) — Measured vs. Standards</h3>
+      <h3 style="margin-bottom: 1.5rem;">Average Daily Traffic (ADT) — Current Measured vs. Safety Standards</h3>
 
       <div class="data-bar">
         <div class="data-bar-label">Colby Street</div>
         <div class="data-bar-track">
-          <div class="data-bar-fill danger" style="width: 78%;">~3,900</div>
-          <div class="data-bar-limit" style="left: 40%;">
-            <div class="data-bar-limit-label">City limit: 2,000</div>
+          <div class="data-bar-fill danger" style="width: 58%;">~3,500</div>
+          <div class="data-bar-limit" style="left: 33%;">
+            <div class="data-bar-limit-label">FHWA bike route: 2,000</div>
           </div>
         </div>
       </div>
@@ -653,9 +793,9 @@ a:hover { color: var(--oak-green-light); }
       <div class="data-bar">
         <div class="data-bar-label">Colby (w/ JCC)</div>
         <div class="data-bar-track">
-          <div class="data-bar-fill danger" style="width: 100%;">5,000+</div>
-          <div class="data-bar-limit" style="left: 40%;">
-            <div class="data-bar-limit-label">City limit: 2,000</div>
+          <div class="data-bar-fill danger" style="width: 83%;">5,000+</div>
+          <div class="data-bar-limit" style="left: 33%;">
+            <div class="data-bar-limit-label">FHWA bike route: 2,000</div>
           </div>
         </div>
       </div>
@@ -663,9 +803,9 @@ a:hover { color: var(--oak-green-light); }
       <div class="data-bar">
         <div class="data-bar-label">Hillegass Ave</div>
         <div class="data-bar-track">
-          <div class="data-bar-fill warning" style="width: 38%;">~1,900</div>
-          <div class="data-bar-limit" style="left: 14%;">
-            <div class="data-bar-limit-label">Federal limit: 700</div>
+          <div class="data-bar-fill warning" style="width: 32%;">~1,900</div>
+          <div class="data-bar-limit" style="left: 12%;">
+            <div class="data-bar-limit-label">FHWA local: 700</div>
           </div>
         </div>
       </div>
@@ -673,19 +813,42 @@ a:hover { color: var(--oak-green-light); }
       <div class="data-bar">
         <div class="data-bar-label">Martin Street</div>
         <div class="data-bar-track">
-          <div class="data-bar-fill warning" style="width: 30%;">~1,500</div>
-          <div class="data-bar-limit" style="left: 14%;">
-            <div class="data-bar-limit-label">Federal limit: 700</div>
+          <div class="data-bar-fill warning" style="width: 33%;">~2,000</div>
+          <div class="data-bar-limit" style="left: 12%;">
+            <div class="data-bar-limit-label">FHWA local: 700</div>
           </div>
         </div>
       </div>
 
       <div class="data-bar">
-        <div class="data-bar-label">FHWA Standard</div>
+        <div class="data-bar-label">FHWA Max (local)</div>
         <div class="data-bar-track">
-          <div class="data-bar-fill safe" style="width: 30%;">1,500</div>
+          <div class="data-bar-fill safe" style="width: 12%;">700</div>
         </div>
       </div>
+
+      <div class="data-bar">
+        <div class="data-bar-label">FHWA Max (bike)</div>
+        <div class="data-bar-track">
+          <div class="data-bar-fill safe" style="width: 33%;">2,000</div>
+        </div>
+      </div>
+
+      <!-- Horizontal scale -->
+      <div style="display: flex; align-items: center; margin-top: 0.75rem; padding-left: 156px;">
+        <div style="flex: 1; position: relative; height: 20px; border-left: 1px solid var(--text-muted);">
+          <div style="position: absolute; left: 0; bottom: 0; font-size: 0.65rem; color: var(--text-muted); transform: translateX(-50%);">0</div>
+          <div style="position: absolute; left: 16.7%; bottom: 0; font-size: 0.65rem; color: var(--text-muted); transform: translateX(-50%);">1,000</div>
+          <div style="position: absolute; left: 33.3%; bottom: 0; font-size: 0.65rem; color: var(--text-muted); transform: translateX(-50%);">2,000</div>
+          <div style="position: absolute; left: 50%; bottom: 0; font-size: 0.65rem; color: var(--text-muted); transform: translateX(-50%);">3,000</div>
+          <div style="position: absolute; left: 66.7%; bottom: 0; font-size: 0.65rem; color: var(--text-muted); transform: translateX(-50%);">4,000</div>
+          <div style="position: absolute; left: 83.3%; bottom: 0; font-size: 0.65rem; color: var(--text-muted); transform: translateX(-50%);">5,000</div>
+          <div style="position: absolute; left: 100%; bottom: 0; font-size: 0.65rem; color: var(--text-muted); transform: translateX(-50%);">6,000</div>
+          <div style="position: absolute; top: 0; left: 0; right: 0; height: 1px; background: repeating-linear-gradient(90deg, var(--text-muted) 0, var(--text-muted) 1px, transparent 1px, transparent 16.7%);"></div>
+        </div>
+        <div style="width: 0; flex-shrink: 0;"></div>
+      </div>
+      <div style="text-align: right; font-size: 0.65rem; color: var(--text-muted); margin-top: 0.25rem;">vehicles per day →</div>
     </div>
 
     <table class="standards-table fade-in">
@@ -693,21 +856,21 @@ a:hover { color: var(--oak-green-light); }
         <tr>
           <th>Street</th>
           <th>Measured ADT</th>
-          <th>Applicable Standard</th>
+          <th>Max Threshold</th>
           <th>Status</th>
         </tr>
       </thead>
       <tbody>
         <tr>
           <td><strong>Colby St</strong> (bike boulevard)</td>
-          <td class="over-limit">~3,900</td>
-          <td class="limit">2,000 (OakDOT bike route)</td>
-          <td class="over-limit">195% over limit</td>
+          <td class="over-limit">~3,500</td>
+          <td class="limit">2,000 (FHWA and OakDOT bike route)</td>
+          <td class="over-limit">175% over limit</td>
         </tr>
         <tr>
           <td><strong>Colby St</strong> (projected w/ JCC)</td>
           <td class="over-limit">5,000+</td>
-          <td class="limit">2,000 (OakDOT bike route)</td>
+          <td class="limit">2,000 (FHWA and OakDOT bike route)</td>
           <td class="over-limit">250%+ over limit</td>
         </tr>
         <tr>
@@ -718,9 +881,9 @@ a:hover { color: var(--oak-green-light); }
         </tr>
         <tr>
           <td><strong>Martin St</strong></td>
-          <td class="over-limit">1,500+</td>
+          <td class="over-limit">~2,000</td>
           <td class="limit">700 (FHWA local street)</td>
-          <td class="over-limit">214% over limit</td>
+          <td class="over-limit">286% over limit</td>
         </tr>
       </tbody>
     </table>
@@ -737,7 +900,7 @@ a:hover { color: var(--oak-green-light); }
     <div class="section-label">The Solution</div>
     <h2>A proven, affordable, reversible pilot</h2>
     <p class="lead">
-      OakDOT Director Josh Rowan designed a diverter-based pilot project — the standard traffic engineering tool used worldwide for exactly this problem. UC Berkeley's Institute of Transportation Studies modeled the results.
+      OakDOT Director Josh Rowan designed a diverter-based pilot project — the standard traffic engineering tool used worldwide for exactly this problem.
     </p>
 
     <div class="model-comparison fade-in">
@@ -761,7 +924,7 @@ a:hover { color: var(--oak-green-light); }
       <div class="problem-card">
         <div class="problem-icon icon-green">🔧</div>
         <h3>Tactical &amp; Reversible</h3>
-        <p>120-day pilot using posts, paint, and planters. Nothing permanent. No concrete. Can be adjusted or removed based on measured results.</p>
+        <p>1 year pilot<button class="fn-trigger" data-fn="fn-pilot" aria-label="Footnote 6">(6)</button> using posts, paint, and planters. Nothing permanent. No concrete. Can be adjusted or removed based on measured results.</p>
       </div>
       <div class="problem-card">
         <div class="problem-icon icon-green">💰</div>
@@ -774,14 +937,120 @@ a:hover { color: var(--oak-green-light); }
         <p>Diverters are used in Paris, Bologna, London, and Berkeley (just blocks north across Alcatraz). This is not experimental — it's proven urban design.</p>
       </div>
       <div class="problem-card">
-        <div class="problem-icon icon-green">📊</div>
-        <h3>Data-Driven</h3>
-        <p>Minimal displacement — the ITS model shows 62nd St increases from just 8 to 17 vehicles/hour while Colby and Hillegass drop by 60%.</p>
+        <div class="problem-icon icon-green">🏙️</div>
+        <h3>Modern Urban Design</h3>
+        <p>Inspired by Barcelona's superblocks<button class="fn-trigger" data-fn="fn-superblocks" aria-label="Reference B">(B)</button> — a proven model that reclaims residential streets from through-traffic, reducing noise and pollution while creating safer, more livable neighborhoods. Cities worldwide are adopting this approach.</p>
       </div>
     </div>
 
-    <div class="footnote">
-      Modeling: Dr. Jane MacFarlane, UC Berkeley Institute of Transportation Studies / Smart Cities Research Center. Based on 5 years of SFCTA synthetic population data. <a href="https://its.berkeley.edu/news/your-navigation-app-making-traffic-unmanageable" target="_blank">Published research →</a>
+  </div>
+</section>
+
+<!-- Pilot First Things First -->
+<section class="section section-alt" id="pilot-comparison">
+  <div class="container">
+    <div class="section-label">The Pilot</div>
+    <h2>Pilot first things first</h2>
+    <p class="lead">Diverter-based pilot proposed by OakDOT is the most impactful on traffic and most effective use of taxpayer dollars.</p>
+
+    <div class="pilot-comparison fade-in" style="overflow-x: auto; margin-top: 2.5rem;">
+      <table class="comparison-table">
+        <thead>
+          <tr>
+            <th style="width: 28%;">Treatment</th>
+            <th style="width: 22%;">Impact on Traffic Volume</th>
+            <th style="width: 14%;">Affordability</th>
+            <th style="width: 36%;">Effectiveness (Impact &times; Affordability)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="highlight-row">
+            <td><strong>Diverters</strong><br><span class="comp-desc">Physical barriers (planters, bollards) allowing walking, biking</span></td>
+            <td>
+              <div class="comp-bar-track"><div class="comp-bar-fill" style="width: 100%; background: var(--oak-green);">65%</div></div>
+            </td>
+            <td><div class="affordability-dots">★★★★☆</div></td>
+            <td>
+              <div class="comp-bar-track eff-track"><div class="comp-bar-fill eff-best" style="width: 87%;">260%</div><div class="eff-threshold labeled"></div></div>
+            </td>
+          </tr>
+          <tr>
+            <td><strong>One-way conversions</strong><br><span class="comp-desc">Convert two-way to one-way to disrupt shortcutting</span></td>
+            <td>
+              <div class="comp-bar-track"><div class="comp-bar-fill" style="width: 54%; background: #5B8C5A;">35%</div></div>
+            </td>
+            <td><div class="affordability-dots">★★★☆☆</div></td>
+            <td>
+              <div class="comp-bar-track eff-track"><div class="comp-bar-fill eff-good" style="width: 35%;">105%</div><div class="eff-threshold"></div></div>
+            </td>
+          </tr>
+          <tr>
+            <td><strong>Road diet</strong><br><span class="comp-desc">Reduce the number or width of travel lanes</span></td>
+            <td>
+              <div class="comp-bar-track"><div class="comp-bar-fill" style="width: 38%; background: #7BA37B;">25%</div></div>
+            </td>
+            <td><div class="affordability-dots">★★☆☆☆</div></td>
+            <td>
+              <div class="comp-bar-track eff-track"><div class="comp-bar-fill eff-mid" style="width: 17%;">50%</div><div class="eff-threshold"></div></div>
+            </td>
+          </tr>
+          <tr>
+            <td><strong>Traffic circle</strong><br><span class="comp-desc">Raised or painted circles at intersections to slow traffic</span></td>
+            <td>
+              <div class="comp-bar-track"><div class="comp-bar-fill" style="width: 31%; background: #7BA37B;">20%</div></div>
+            </td>
+            <td><div class="affordability-dots">★★☆☆☆</div></td>
+            <td>
+              <div class="comp-bar-track eff-track"><div class="comp-bar-fill eff-mid" style="width: 13%;">40%</div><div class="eff-threshold"></div></div>
+            </td>
+          </tr>
+          <tr>
+            <td><strong>Speed hump/table</strong><br><span class="comp-desc">Vertical deflection devices placed mid-block</span></td>
+            <td>
+              <div class="comp-bar-track"><div class="comp-bar-fill" style="width: 23%; background: #9AB89A;">15%</div></div>
+            </td>
+            <td><div class="affordability-dots">★★★★☆</div></td>
+            <td>
+              <div class="comp-bar-track eff-track"><div class="comp-bar-fill eff-mid" style="width: 20%;">60%</div><div class="eff-threshold"></div></div>
+              <div style="font-size: 0.65rem; color: var(--text-muted); margin-top: 2px;">already in place</div>
+            </td>
+          </tr>
+          <tr>
+            <td><strong>Chicanes</strong><br><span class="comp-desc">Alternating curb extensions or parking shifts creating an S-curve</span></td>
+            <td>
+              <div class="comp-bar-track"><div class="comp-bar-fill" style="width: 15%; background: #B0C8B0;">10%</div></div>
+            </td>
+            <td><div class="affordability-dots">★★☆☆☆</div></td>
+            <td>
+              <div class="comp-bar-track eff-track"><div class="comp-bar-fill eff-low" style="width: 7%;">20%</div><div class="eff-threshold"></div></div>
+            </td>
+          </tr>
+          <tr>
+            <td><strong>Curb extension</strong><br><span class="comp-desc">Tightened corner radii and shorter crossings</span></td>
+            <td>
+              <div class="comp-bar-track"><div class="comp-bar-fill" style="width: 8%; background: #C8D8C8;">5%</div></div>
+            </td>
+            <td><div class="affordability-dots">★★☆☆☆</div></td>
+            <td>
+              <div class="comp-bar-track eff-track"><div class="comp-bar-fill eff-low" style="width: 3%;">10%</div><div class="eff-threshold"></div></div>
+            </td>
+          </tr>
+          <tr>
+            <td><strong>Signage only</strong><br><span class="comp-desc">Posted signs without physical enforcement</span></td>
+            <td>
+              <div class="comp-bar-track"><div class="comp-bar-fill" style="width: 5%; background: #D8E4D8;">3%</div></div>
+            </td>
+            <td><div class="affordability-dots">★★★★★</div></td>
+            <td>
+              <div class="comp-bar-track eff-track"><div class="comp-bar-fill eff-low" style="width: 5%;">15%</div><div class="eff-threshold"></div></div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="footnote" style="margin-top: 1rem;">
+      Source: Traffic Treatments Effectiveness<button class="fn-trigger" data-fn="fn-treatments" aria-label="Reference C">(C)</button>. Treatments above the 100% effectiveness threshold deliver outsized value per dollar.
     </div>
   </div>
 </section>
@@ -921,13 +1190,49 @@ a:hover { color: var(--oak-green-light); }
     <p class="lead">These successful traffic calming projects demonstrate proven approaches to reducing cut-through traffic and improving neighborhood safety.</p>
 
     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-top: 3rem;">
-      
+
+      <!-- (A) CEQA Analysis — Fehr & Peers -->
+      <div id="ref-A" style="background: var(--card-bg); border-radius: 12px; padding: 2rem; box-shadow: 0 2px 12px rgba(0,0,0,0.08); transition: transform 0.2s, box-shadow 0.2s;" onmouseover="this.style.transform='translateY(-4px)'; this.style.boxShadow='0 4px 20px rgba(0,0,0,0.12)'" onmouseout="this.style.transform=''; this.style.boxShadow='0 2px 12px rgba(0,0,0,0.08)'">
+        <div style="font-size: 2rem; margin-bottom: 1rem;">📄</div>
+        <h3 style="font-family: 'DM Serif Display', serif; font-size: 1.4rem; margin-bottom: 0.75rem; color: var(--oak-green);"><span style="color: var(--amber); font-size: 0.85rem; font-family: 'DM Sans', sans-serif; vertical-align: middle;">(A)</span> CEQA Analysis: JCC East Bay Project</h3>
+        <p style="color: var(--text-secondary); margin-bottom: 1.25rem; line-height: 1.6;">
+          The JCC remodel will add <strong>338 peak-hour vehicle trips</strong> to streets already far over capacity. This Fehr &amp; Peers transportation analysis quantifies the additional traffic burden on College Avenue, Chabot Road, and surrounding residential streets — making the case for diverters even more urgent. Prepared by Lamphier-Gregory, October 2024 (Case PLN23117).
+        </p>
+        <a href="https://cao-94612.s3.us-west-2.amazonaws.com/documents/JCC-East-Bay-Project-CEQA-Analysis.pdf" target="_blank" rel="noopener noreferrer" style="display: inline-flex; align-items: center; gap: 0.5rem; color: var(--oak-green); font-weight: 600; text-decoration: none; font-size: 0.9rem;">
+          View CEQA Analysis (PDF) →
+        </a>
+      </div>
+
+      <!-- (B) Barcelona Superblocks -->
+      <div id="ref-B" style="background: var(--card-bg); border-radius: 12px; padding: 2rem; box-shadow: 0 2px 12px rgba(0,0,0,0.08); transition: transform 0.2s, box-shadow 0.2s;" onmouseover="this.style.transform='translateY(-4px)'; this.style.boxShadow='0 4px 20px rgba(0,0,0,0.12)'" onmouseout="this.style.transform=''; this.style.boxShadow='0 2px 12px rgba(0,0,0,0.08)'">
+        <img src="barcelona-superblock.png" alt="Barcelona superblock — streets reclaimed for people with planters, pedestrians, and cyclists" style="width: 100%; border-radius: 8px; margin-bottom: 1rem; object-fit: cover; max-height: 180px;">
+        <h3 style="font-family: 'DM Serif Display', serif; font-size: 1.4rem; margin-bottom: 0.75rem; color: var(--oak-green);"><span style="color: var(--amber); font-size: 0.85rem; font-family: 'DM Sans', sans-serif; vertical-align: middle;">(B)</span> Barcelona Superblocks</h3>
+        <p style="color: var(--text-secondary); margin-bottom: 1.25rem; line-height: 1.6;">
+          Barcelona's superblocks achieved a <strong>25% reduction in through-traffic</strong> and a <strong>17% decrease in NO₂ pollution</strong> by restricting vehicle access to local-only within multi-block zones. Streets formerly dominated by cars became public spaces for walking, cycling, and community life — with no major infrastructure cost. The model is now replicated in cities worldwide.
+        </p>
+        <a href="https://urbandesignlab.in/barcelona-superblocks-reclaiming-streets-for-people/" target="_blank" rel="noopener noreferrer" style="display: inline-flex; align-items: center; gap: 0.5rem; color: var(--oak-green); font-weight: 600; text-decoration: none; font-size: 0.9rem;">
+          Barcelona Superblocks — Reclaiming Streets for People →
+        </a>
+      </div>
+
+      <!-- (C) Traffic Treatments Effectiveness -->
+      <div id="ref-C" style="background: var(--card-bg); border-radius: 12px; padding: 2rem; box-shadow: 0 2px 12px rgba(0,0,0,0.08); transition: transform 0.2s, box-shadow 0.2s;" onmouseover="this.style.transform='translateY(-4px)'; this.style.boxShadow='0 4px 20px rgba(0,0,0,0.12)'" onmouseout="this.style.transform=''; this.style.boxShadow='0 2px 12px rgba(0,0,0,0.08)'">
+        <div style="font-size: 2rem; margin-bottom: 1rem;">📊</div>
+        <h3 style="font-family: 'DM Serif Display', serif; font-size: 1.4rem; margin-bottom: 0.75rem; color: var(--oak-green);"><span style="color: var(--amber); font-size: 0.85rem; font-family: 'DM Sans', sans-serif; vertical-align: middle;">(C)</span> Traffic Treatments Effectiveness</h3>
+        <p style="color: var(--text-secondary); margin-bottom: 1.25rem; line-height: 1.6;">
+          Diverters deliver <strong>65% traffic volume reduction</strong> — the highest of any treatment — and score <strong>260% on combined effectiveness</strong> (impact × affordability), far above the 100% threshold. By comparison, signage alone achieves just 3% reduction. Data compiled from FHWA, NACTO, and peer-reviewed transportation research.
+        </p>
+        <a href="https://docs.google.com/spreadsheets/d/1Hk8-VbBMQWHJfMODOuON3VDwQ0lVEPL_/edit" target="_blank" rel="noopener noreferrer" style="display: inline-flex; align-items: center; gap: 0.5rem; color: var(--oak-green); font-weight: 600; text-decoration: none; font-size: 0.9rem;">
+          View source data →
+        </a>
+      </div>
+
       <!-- Pride Pilot -->
       <div style="background: var(--card-bg); border-radius: 12px; padding: 2rem; box-shadow: 0 2px 12px rgba(0,0,0,0.08); transition: transform 0.2s, box-shadow 0.2s;" onmouseover="this.style.transform='translateY(-4px)'; this.style.boxShadow='0 4px 20px rgba(0,0,0,0.12)'" onmouseout="this.style.transform=''; this.style.boxShadow='0 2px 12px rgba(0,0,0,0.08)'">
         <div style="font-size: 2rem; margin-bottom: 1rem;">🏫</div>
         <h3 style="font-family: 'DM Serif Display', serif; font-size: 1.4rem; margin-bottom: 0.75rem; color: var(--oak-green);">The "Pride Pilot" (81st Ave)</h3>
         <p style="color: var(--text-secondary); margin-bottom: 1.25rem; line-height: 1.6;">
-          A 3-week demonstration project in East Oakland that successfully reduced traffic volumes by 65-75% using a diagonal traffic filter. The project, located near East Oakland Pride Elementary, reduced cut-through traffic while maintaining local access. Traffic speeds decreased by up to 4 mph, and the school principal reported significantly calmer traffic conditions.
+          A 3-week diverter pilot in East Oakland that <strong>reduced cut-through traffic by 65–75%</strong> using a single diagonal traffic filter. Speeds dropped by up to 4 mph near East Oakland Pride Elementary, and the school principal reported dramatically calmer conditions — proof that diverters work quickly and decisively.
         </p>
         <a href="https://www.oaklandca.gov/files/assets/city/v/1/transportation/documents/projects/calm-east-oakland-streets/81st-ave-demonstration-project-summary-12-17-24.pdf" target="_blank" rel="noopener noreferrer" style="display: inline-flex; align-items: center; gap: 0.5rem; color: var(--oak-green); font-weight: 600; text-decoration: none; font-size: 0.9rem;">
           Read the full report →
@@ -939,7 +1244,7 @@ a:hover { color: var(--oak-green-light); }
         <div style="font-size: 2rem; margin-bottom: 1rem;">🚧</div>
         <h3 style="font-family: 'DM Serif Display', serif; font-size: 1.4rem; margin-bottom: 0.75rem; color: var(--oak-green);">The "Ney Avenue" Diverter</h3>
         <p style="color: var(--text-secondary); margin-bottom: 1.25rem; line-height: 1.6;">
-          A neighborhood traffic calming study examining the effectiveness of traffic diverters in reducing cut-through traffic on residential streets. This project demonstrates how physical barriers can successfully redirect non-local traffic while preserving neighborhood access.
+          Oakland's own study showing diverters <strong>successfully redirected non-local traffic</strong> off residential streets while preserving full access for residents. The physical barriers eliminated shortcutting without displacing meaningful volume to adjacent streets.
         </p>
         <a href="https://cao-94612.s3.amazonaws.com/documents/Ney-Avenue-Neighborhood-Traffic-Calming-Study-Memo-Only.pdf" target="_blank" rel="noopener noreferrer" style="display: inline-flex; align-items: center; gap: 0.5rem; color: var(--oak-green); font-weight: 600; text-decoration: none; font-size: 0.9rem;">
           Read the study →
@@ -951,7 +1256,7 @@ a:hover { color: var(--oak-green-light); }
         <div style="font-size: 2rem; margin-bottom: 1rem;">🚴</div>
         <h3 style="font-family: 'DM Serif Display', serif; font-size: 1.4rem; margin-bottom: 0.75rem; color: var(--oak-green);">The Berkeley Model (Hillegass Ave)</h3>
         <p style="color: var(--text-secondary); margin-bottom: 1.25rem; line-height: 1.6;">
-          A comprehensive bicycle boulevard design guide from 2000 that outlines proven tools and strategies for creating safe, efficient bicycle routes through residential neighborhoods. The guide includes traffic calming techniques, intersection treatments, and design principles that reduce vehicle volumes and speeds while improving safety for all users.
+          Just blocks north of our neighborhood, Berkeley used diverters on Hillegass Avenue to <strong>keep traffic volumes below 1,500 ADT</strong> on their bicycle boulevard. The same street crosses into Oakland and immediately jumps to nearly 2,000 ADT — demonstrating exactly what happens without traffic calming.
         </p>
         <a href="https://berkeleyca.gov/sites/default/files/2022-02/Bicycle-Boulevard-Design-Tools-and-Guidelines.pdf" target="_blank" rel="noopener noreferrer" style="display: inline-flex; align-items: center; gap: 0.5rem; color: var(--oak-green); font-weight: 600; text-decoration: none; font-size: 0.9rem;">
           Read the guidelines →
@@ -963,7 +1268,7 @@ a:hover { color: var(--oak-green-light); }
         <div style="font-size: 2rem; margin-bottom: 1rem;">🔌</div>
         <h3 style="font-family: 'DM Serif Display', serif; font-size: 1.4rem; margin-bottom: 0.75rem; color: var(--oak-green);">NACTO Case Study: Channing Way Diverter</h3>
         <p style="color: var(--text-secondary); margin-bottom: 1.25rem; line-height: 1.6;">
-          A case study from the National Association of City Transportation Officials documenting Berkeley's innovative bicycle loop detector at Channing Way and Martin Luther King Jr. Boulevard. The project uses protected platforms and inductive loop detectors to help cyclists safely cross major streets while deterring cut-through traffic.
+          NACTO documents how Berkeley's Channing Way diverter <strong>eliminated cut-through traffic</strong> while enabling safe bicycle crossings at a major intersection. The project uses loop detectors and protected platforms — a model for combining traffic reduction with active transportation safety.
         </p>
         <a href="https://nacto.org/latest/bicycle-loop-detector-at-channing-way-and-martin-luther-king-jr-boulevard-berkeley-california/" target="_blank" rel="noopener noreferrer" style="display: inline-flex; align-items: center; gap: 0.5rem; color: var(--oak-green); font-weight: 600; text-decoration: none; font-size: 0.9rem;">
           View case study →
@@ -974,11 +1279,48 @@ a:hover { color: var(--oak-green-light); }
   </div>
 </section>
 
+<!-- Footnotes -->
+<section class="section section-alt" id="footnotes">
+  <div class="container">
+    <div class="section-label">Footnotes</div>
+    <ol class="footnotes-list">
+      <li id="fn-ref-1"><strong>(1)</strong> Traffic counting equipment compiled ADT as ~3,500 on Colby, ~1,900 on Hillegass, and ~2,000 on Martin/Ayala. It is estimated that the other ~12 streets of the trapezoid carry over 2,500 in aggregate.</li>
+      <li id="fn-ref-2"><strong>(2)</strong> Lower Rockridge trapezoid is the residential area delimited by 4 avenues — College, Claremont, Telegraph and Alcatraz — with 14 points of entry/exit for car traffic.</li>
+      <li id="fn-ref-3"><strong>(3)</strong> 2021 petition requesting the trapezoid to be converted into a permanent slow neighborhood.</li>
+      <li id="fn-ref-4"><strong>(4)</strong> 2025 petition requesting a first pilot to reduce traffic volume by leveraging diverters.</li>
+      <li id="fn-ref-5"><strong>(5)</strong> Based on UC Berkeley Institute of Transportation Studies modeling of diverter configurations designed by OakDOT.</li>
+      <li id="fn-ref-6"><strong>(6)</strong> Based on OakDOT experience, pilots require a minimum of 3–4 months for traffic patterns to be rebooted and another 6–9 months to measure impact and take into account seasonal variations (e.g. schools on/off).</li>
+    </ol>
+  </div>
+</section>
+
 <!-- CTA -->
 <section class="cta-section" id="action">
   <div class="container">
-    <h2>What You Can Do Right Now</h2>
+    <h2>Demand immediate action!</h2>
     <p>Every email matters. City officials have said the silence was being interpreted as fading interest. Let them know that's wrong.</p>
+
+    <!-- Support petition box -->
+    <div class="support-box fade-in" style="max-width: 600px; margin: 2.5rem auto 2.5rem; background: rgba(232, 168, 48, 0.1); border: 2px solid var(--amber); border-radius: 14px; padding: 2.5rem; text-align: left;">
+      <h3 style="color: var(--amber); font-size: 1.15rem; margin-bottom: 0.5rem; line-height: 1.4;">Support the immediate kick-off of the diverter-based pilot OakDOT proposed 18 months ago</h3>
+      <p style="font-size: 0.85rem; color: rgba(255,255,255,0.6); margin-bottom: 1.5rem;">Add your name to show city officials this community demands action now.</p>
+      <form id="supportForm" onsubmit="return handleSupportSubmit(event)" style="display: flex; flex-direction: column; gap: 1rem;">
+        <div>
+          <label for="supportName" style="font-size: 0.75rem; color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.25rem; display: block;">Name *</label>
+          <input type="text" id="supportName" name="name" required placeholder="Your full name" style="width: 100%; padding: 0.7rem 1rem; border-radius: 8px; border: 1px solid rgba(255,255,255,0.2); background: rgba(0,0,0,0.3); color: white; font-size: 0.9rem; font-family: inherit; box-sizing: border-box;">
+        </div>
+        <div>
+          <label for="supportEmail" style="font-size: 0.75rem; color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.25rem; display: block;">Email address *</label>
+          <input type="email" id="supportEmail" name="email" required placeholder="you@example.com" style="width: 100%; padding: 0.7rem 1rem; border-radius: 8px; border: 1px solid rgba(255,255,255,0.2); background: rgba(0,0,0,0.3); color: white; font-size: 0.9rem; font-family: inherit; box-sizing: border-box;">
+        </div>
+        <div>
+          <label for="supportStreet" style="font-size: 0.75rem; color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.25rem; display: block;">Street you live on *</label>
+          <input type="text" id="supportStreet" name="street" required placeholder="e.g. Colby Street" style="width: 100%; padding: 0.7rem 1rem; border-radius: 8px; border: 1px solid rgba(255,255,255,0.2); background: rgba(0,0,0,0.3); color: white; font-size: 0.9rem; font-family: inherit; box-sizing: border-box;">
+        </div>
+        <button type="submit" id="supportBtn" style="margin-top: 0.5rem; padding: 0.85rem 2rem; background: var(--amber); color: #1a1a1a; font-weight: 700; font-size: 1rem; border: none; border-radius: 8px; cursor: pointer; font-family: inherit; transition: all 0.2s;">Submit</button>
+        <div id="supportMsg" style="display: none; padding: 0.75rem 1rem; border-radius: 8px; font-size: 0.9rem; margin-top: 0.25rem;"></div>
+      </form>
+    </div>
 
     <div class="cta-cards">
       <div class="cta-card">
@@ -1025,6 +1367,53 @@ a:hover { color: var(--oak-green-light); }
   </div>
 </footer>
 
+<!-- Popup footnotes (placed at body level to avoid overflow:hidden clipping) -->
+<div class="fn-popup" id="fn-10k" data-ref="fn-ref-1">
+  <button class="fn-close" aria-label="Close">&times;</button>
+  <strong>Footnote 1)</strong> Traffic counting equipment compiled ADT as ~3,500 on Colby, ~1,900 on Hillegass, and ~2,000 on Martin/Ayala. It is estimated that the other ~12 streets of the trapezoid carry over 2,500 in aggregate.
+  <a href="#fn-ref-1" class="fn-goto" onclick="document.querySelectorAll('.fn-popup').forEach(p=>p.classList.remove('visible'))">see full footnote ↓</a>
+</div>
+<div class="fn-popup" id="fn-trapezoid" data-ref="fn-ref-2">
+  <button class="fn-close" aria-label="Close">&times;</button>
+  <strong>Footnote 2)</strong> Lower Rockridge trapezoid is the residential area delimited by 4 avenues — College, Claremont, Telegraph and Alcatraz — with 14 points of entry/exit for car traffic.
+  <a href="#fn-ref-2" class="fn-goto" onclick="document.querySelectorAll('.fn-popup').forEach(p=>p.classList.remove('visible'))">see full footnote ↓</a>
+</div>
+<div class="fn-popup" id="fn-petition1" data-ref="fn-ref-3">
+  <button class="fn-close" aria-label="Close">&times;</button>
+  <strong>Footnote 3)</strong> 2021 petition requesting the trapezoid to be converted into a permanent slow neighborhood.
+  <a href="#fn-ref-3" class="fn-goto" onclick="document.querySelectorAll('.fn-popup').forEach(p=>p.classList.remove('visible'))">see full footnote ↓</a>
+</div>
+<div class="fn-popup" id="fn-petition2" data-ref="fn-ref-4">
+  <button class="fn-close" aria-label="Close">&times;</button>
+  <strong>Footnote 4)</strong> 2025 petition requesting a first pilot to reduce traffic volume by leveraging diverters.
+  <a href="#fn-ref-4" class="fn-goto" onclick="document.querySelectorAll('.fn-popup').forEach(p=>p.classList.remove('visible'))">see full footnote ↓</a>
+</div>
+<div class="fn-popup" id="fn-60pct" data-ref="fn-ref-5">
+  <button class="fn-close" aria-label="Close">&times;</button>
+  <strong>Footnote 5)</strong> Based on UC Berkeley Institute of Transportation Studies modeling of diverter configurations designed by OakDOT.
+  <a href="#fn-ref-5" class="fn-goto" onclick="document.querySelectorAll('.fn-popup').forEach(p=>p.classList.remove('visible'))">see full footnote ↓</a>
+</div>
+<div class="fn-popup" id="fn-pilot" data-ref="fn-ref-6">
+  <button class="fn-close" aria-label="Close">&times;</button>
+  <strong>Footnote 6)</strong> Based on OakDOT experience, pilots require a minimum of 3–4 months for traffic patterns to be rebooted and another 6–9 months to measure impact and take into account seasonal variations (e.g. schools on/off).
+  <a href="#fn-ref-6" class="fn-goto" onclick="document.querySelectorAll('.fn-popup').forEach(p=>p.classList.remove('visible'))">see full footnote ↓</a>
+</div>
+<div class="fn-popup" id="fn-ceqa" data-ref="ref-A">
+  <button class="fn-close" aria-label="Close">&times;</button>
+  <strong>Reference A)</strong> Fehr &amp; Peers study quantifying environmental impact of future JCC facility. <a href="https://cao-94612.s3.us-west-2.amazonaws.com/documents/JCC-East-Bay-Project-CEQA-Analysis.pdf" target="_blank" rel="noopener" style="color: var(--amber);">View CEQA Analysis (PDF)</a>
+  <a href="#ref-A" class="fn-goto" onclick="document.querySelectorAll('.fn-popup').forEach(p=>p.classList.remove('visible'))">see full reference ↓</a>
+</div>
+<div class="fn-popup" id="fn-superblocks" data-ref="ref-B">
+  <button class="fn-close" aria-label="Close">&times;</button>
+  <strong>Reference B)</strong> Barcelona's superblocks reclaim residential streets from through-traffic — reducing noise, pollution, and danger while creating public space. <a href="https://urbandesignlab.in/barcelona-superblocks-reclaiming-streets-for-people/" target="_blank" rel="noopener" style="color: var(--amber);">Read more</a>
+  <a href="#ref-B" class="fn-goto" onclick="document.querySelectorAll('.fn-popup').forEach(p=>p.classList.remove('visible'))">see full reference ↓</a>
+</div>
+<div class="fn-popup" id="fn-treatments" data-ref="ref-C">
+  <button class="fn-close" aria-label="Close">&times;</button>
+  <strong>Reference C)</strong> Comparative analysis of traffic calming treatments — impact, affordability, and effectiveness. Diverters rank highest at 260%. <a href="https://docs.google.com/spreadsheets/d/1Hk8-VbBMQWHJfMODOuON3VDwQ0lVEPL_/edit" target="_blank" rel="noopener" style="color: var(--amber);">View data</a>
+  <a href="#ref-C" class="fn-goto" onclick="document.querySelectorAll('.fn-popup').forEach(p=>p.classList.remove('visible'))">see full reference ↓</a>
+</div>
+
 <script>
 // Mobile menu toggle
 document.getElementById('mobileToggle').addEventListener('click', function() {
@@ -1053,6 +1442,91 @@ const observer = new IntersectionObserver((entries) => {
 }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
 
 document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+// Popup footnotes
+function positionPopup(trigger, popup) {
+  const rect = trigger.getBoundingClientRect();
+  const pw = 320; // popup width
+  const gap = 10;
+  // Show briefly off-screen to measure height
+  popup.style.visibility = 'hidden';
+  popup.style.display = 'block';
+  const ph = popup.offsetHeight;
+  popup.style.visibility = '';
+  popup.style.display = '';
+  // Prefer above, fall back to below
+  popup.classList.remove('above', 'below');
+  let top;
+  if (rect.top - ph - gap > 8) {
+    top = rect.top - ph - gap;
+    popup.classList.add('above');
+  } else {
+    top = rect.bottom + gap;
+    popup.classList.add('below');
+  }
+  let left = rect.left + rect.width / 2 - pw / 2;
+  left = Math.max(8, Math.min(left, window.innerWidth - pw - 8));
+  popup.style.top = top + 'px';
+  popup.style.left = left + 'px';
+}
+let fnJustOpened = false;
+document.querySelectorAll('.fn-trigger').forEach(trigger => {
+  trigger.addEventListener('click', function(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    const id = this.getAttribute('data-fn');
+    const popup = document.getElementById(id);
+    const wasVisible = popup.classList.contains('visible');
+    document.querySelectorAll('.fn-popup').forEach(p => p.classList.remove('visible'));
+    if (!wasVisible) {
+      positionPopup(this, popup);
+      popup.classList.add('visible');
+      fnJustOpened = true;
+      setTimeout(() => { fnJustOpened = false; }, 50);
+    }
+  });
+});
+document.querySelectorAll('.fn-close').forEach(btn => {
+  btn.addEventListener('click', function(e) {
+    e.stopPropagation();
+    this.closest('.fn-popup').classList.remove('visible');
+  });
+});
+document.addEventListener('click', (e) => {
+  if (fnJustOpened) return;
+  if (e.target.closest('.fn-popup')) return;
+  document.querySelectorAll('.fn-popup').forEach(p => p.classList.remove('visible'));
+});
+
+// Support form handler
+function handleSupportSubmit(e) {
+  e.preventDefault();
+  const btn = document.getElementById('supportBtn');
+  const msg = document.getElementById('supportMsg');
+  const form = document.getElementById('supportForm');
+  const name = document.getElementById('supportName').value.trim();
+  const email = document.getElementById('supportEmail').value.trim();
+  const street = document.getElementById('supportStreet').value.trim();
+  if (!name || !email || !street) return false;
+  btn.disabled = true;
+  btn.textContent = 'Submitting…';
+  // Store locally (replace with real backend when ready)
+  const entry = { name, email, street, date: new Date().toISOString() };
+  const existing = JSON.parse(localStorage.getItem('pilot_supporters') || '[]');
+  existing.push(entry);
+  localStorage.setItem('pilot_supporters', JSON.stringify(existing));
+  msg.style.display = 'block';
+  msg.style.background = 'rgba(39,174,96,0.2)';
+  msg.style.color = '#2ECC71';
+  msg.textContent = 'Thank you, ' + name + '! Your support has been recorded. (' + existing.length + ' supporter' + (existing.length > 1 ? 's' : '') + ' total)';
+  btn.textContent = 'Submitted ✓';
+  btn.style.background = 'rgba(255,255,255,0.2)';
+  btn.style.color = 'white';
+  document.getElementById('supportName').disabled = true;
+  document.getElementById('supportEmail').disabled = true;
+  document.getElementById('supportStreet').disabled = true;
+  return false;
+}
 
 // Smooth scroll for anchor links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
